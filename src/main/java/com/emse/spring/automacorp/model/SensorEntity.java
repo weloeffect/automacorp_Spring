@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SP_SENSOR")
-public class Sensor {
+public class SensorEntity {
 
     @Id
     @GeneratedValue
@@ -20,10 +20,13 @@ public class Sensor {
     @Enumerated(EnumType.STRING)
     private SensorType sensorType;
 
-    public Sensor() {
+    @Transient // (7).
+    private Integer notImportant;
+
+    public SensorEntity() {
     }
 
-    public Sensor(String name, SensorType sensorType) {
+    public SensorEntity(String name, SensorType sensorType) {
         this.name = name;
         this.sensorType = sensorType;
     }

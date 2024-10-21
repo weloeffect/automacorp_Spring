@@ -4,87 +4,92 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
-@Entity
-@Table(name= "ROOM")
+import static java.util.Set.*;
+
+@Entity // (1).
+@Table(name = "SP_ROOM") // (2).
 public class RoomEntity {
-
-    @Id
+    @Id // (3).
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    @Column(nullable = false, name = "FLOOR")
-    private int floor;
-
-    @Column(nullable = false)
+    @Column(nullable=false)  // (4).
     private String name;
 
-    @OneToOne
-    private Sensor temperature;
+    @Column(name = "FLOOR",nullable=false) // (5)
+    private Integer floor;
 
-    @Column(name = "TARGET_TEMPERATURE")
-    private double target_temperature;
+    @OneToOne// (5)
+    private SensorEntity current_temperature;
+
+    @Column(name = "TARGET_TEMPERATURE") // (5)
+    private Double target_temperature;
 
     @OneToMany(mappedBy = "room")
-    private Set<WindowEntity> windowsList = Set.of();
+    private Set<WindowEntity> windows = of();
 
-    public RoomEntity() {
+
+
+    public Set<WindowEntity> getWindows() {
+        return windows;
+    }
+    public RoomEntity() { // (8).
     }
 
-
-    public RoomEntity(long id, int floor, String name, Sensor current_temperature_id, double targetTemperature){//Set<WindowEntity> windowsList//) {
-        this.id = id;
-        this.floor = floor;
+    public RoomEntity(String name, SensorEntity current_temperature,Integer floor) {
+        this.current_temperature = current_temperature;
         this.name = name;
-        this.temperature = current_temperature_id;
-        //this.target_temperature = targetTemperature;
-        //this.windowsList = windowsList;
+        this.floor=floor;
+
+
     }
 
-    public long getId() {
+
+    public RoomEntity(String name, SensorEntity current_temperature,Integer floor,Double target_temperature) {
+        this.current_temperature = current_temperature;
+        this.name = name;
+        this.floor=floor;
+        this.target_temperature=target_temperature;
+
+    }
+
+    public Long getId() { // (10).
         return id;
     }
 
-    public int getFloor() {
-        return floor;
-    }
+    public Double getTargetTemperature() { return target_temperature; }
 
-    public String getName() {
-        return name;
-    }
+    public SensorEntity getCurrentTemperature() { return current_temperature; }
 
-    public Sensor getTemperature() {
-        return temperature;
-    }
+    public String getName() { return name; }
 
-    public double getTargetTemperature() {
-        return target_temperature;
-    }
-
-    public Set<WindowEntity> getWindowsList() {
-        return windowsList;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
+    public Integer getFloor() { return floor; }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setTemperature(Sensor temperature) {
-        this.temperature = temperature;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setTargetTemperature(double targetTemperature) {
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
+    }
+
+    public void setCurrentTemperature(SensorEntity currentTemperature) {
+        this.current_temperature = currentTemperature;
+    }
+
+    public void setTargetTemperature(Double targetTemperature) {
         this.target_temperature = targetTemperature;
     }
 
-    public void setWindowsList(Set<WindowEntity> windowsList) {
-        this.windowsList = windowsList;
+    public void setWindows(Set<WindowEntity> windows) {
+        this.windows = windows;
     }
+
+
+
 }

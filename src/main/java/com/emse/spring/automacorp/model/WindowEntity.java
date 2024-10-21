@@ -2,53 +2,60 @@ package com.emse.spring.automacorp.model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "SP_WINDOW")
+@Entity// (1)
+@Table(name = "SP_WINDOW")// (2)
 public class WindowEntity {
-    @Id
+    @Id// (3)
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable=false, length=255) // (4)
     private String name;
 
-    @OneToOne
-    private Sensor windowStatus;
+    @OneToOne(cascade = CascadeType.ALL)
+    private SensorEntity windowStatus;
+
+    public void setRoom(RoomEntity room) {
+        this.room = room;
+    }
+
+    public RoomEntity getRoom() {
+        return room;
+    }
 
     @ManyToOne
     private RoomEntity room;
 
-
     public WindowEntity() {
     }
 
-    public WindowEntity(String name, Sensor windowStatus, RoomEntity room) {
+    public WindowEntity(String name, SensorEntity sensor,RoomEntity room) {
+        this.windowStatus = sensor;
         this.name = name;
-        this.windowStatus = windowStatus;
-        this.room = room;
+        this.room=room;
     }
 
-    public long getId() {
-        return id;
+    public Long getId() {
+        return this.id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Sensor getWindowStatus() {
-        return windowStatus;
-    }
-
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
+
+    public String getName() { return name; }
+
+    public Long getRoomId() { return this.room.getId(); }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setWindowStatus(Sensor windowStatus) {
+    public SensorEntity getWindowStatus() {
+        return windowStatus;
+    }
+
+    public void setWindowStatus(SensorEntity windowStatus) {
         this.windowStatus = windowStatus;
     }
 }
