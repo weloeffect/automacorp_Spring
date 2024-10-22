@@ -1,6 +1,6 @@
 package com.emse.spring.automacorp.dao;
 
-import com.emse.spring.automacorp.model.SensorEntity;
+import com.emse.spring.automacorp.entities.SensorEntity;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

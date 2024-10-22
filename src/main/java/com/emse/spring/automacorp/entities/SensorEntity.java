@@ -1,4 +1,4 @@
-package com.emse.spring.automacorp.model;
+package com.emse.spring.automacorp.entities;
 
 import jakarta.persistence.*;
 
@@ -62,4 +62,5 @@ public class SensorEntity {
     public void setSensorType(SensorType sensorType) {
         this.sensorType = sensorType;
     }
+
 }

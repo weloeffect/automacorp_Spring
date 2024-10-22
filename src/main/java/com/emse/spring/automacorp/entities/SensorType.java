@@ -1,3 +1,3 @@
-package com.emse.spring.automacorp.model;
+package com.emse.spring.automacorp.entities;
 
 public enum SensorType { TEMPERATURE, POWER, STATUS }
