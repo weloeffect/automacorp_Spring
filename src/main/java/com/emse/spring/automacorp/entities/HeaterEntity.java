@@ -3,32 +3,32 @@ package com.emse.spring.automacorp.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "SP_WINDOW")
-public class WindowEntity {
+@Table(name = "SP_HEATER")
+public class HeaterEntity {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false, length=255)
+    @Column(nullable = false, length = 255)
     private String name;
 
-    @OneToOne(optional = false)
-    private SensorEntity windowStatus;
-
-    @ManyToOne
+    @ManyToOne(optional = false)
     private RoomEntity room;
 
-    public WindowEntity() {
+    @OneToOne(optional = false)
+    private SensorEntity status;
+
+    public HeaterEntity() {
     }
 
-    public WindowEntity(String name, SensorEntity windowStatus, RoomEntity room) {
-        this.windowStatus = windowStatus;
+    public HeaterEntity(String name, RoomEntity room, SensorEntity status) {
         this.name = name;
         this.room = room;
+        this.status = status;
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -43,19 +43,19 @@ public class WindowEntity {
         this.name = name;
     }
 
-    public SensorEntity getWindowStatus() {
-        return windowStatus;
-    }
-
-    public void setWindowStatus(SensorEntity windowStatus) {
-        this.windowStatus = windowStatus;
-    }
-
     public RoomEntity getRoom() {
         return room;
     }
 
     public void setRoom(RoomEntity room) {
         this.room = room;
+    }
+
+    public SensorEntity getStatus() {
+        return status;
+    }
+
+    public void setStatus(SensorEntity status) {
+        this.status = status;
     }
 }
