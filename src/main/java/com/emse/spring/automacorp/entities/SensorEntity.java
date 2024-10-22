@@ -7,60 +7,48 @@ import jakarta.persistence.*;
 public class SensorEntity {
 
     @Id
-    @GeneratedValue
-    public long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "sensor_value")
+    @Column(name = "sensor_value", nullable = false)
     private Double value;
 
-    @Column(name = "sensor_type")
-    @Enumerated(EnumType.STRING)
-    private SensorType sensorType;
+    @Column(name = "sensor_type", nullable = false)
+    private String sensorType;
 
-    @Transient // (7).
-    private Integer notImportant;
-
-    public SensorEntity() {
+    public SensorType getSensorType() {
+        return SensorType.valueOf(sensorType);
     }
 
-    public SensorEntity(String name, SensorType sensorType) {
-        this.name = name;
-        this.sensorType = sensorType;
+    public void setSensorType(SensorType sensorType) {
+        this.sensorType = sensorType.name();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Double getValue() {
-        return value;
-    }
-
-    public SensorType getSensorType() {
-        return sensorType;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setValue(Double value) {
-        this.value = value;
+    public Double getValue() {
+        return value;
     }
 
-    public void setSensorType(SensorType sensorType) {
-        this.sensorType = sensorType;
+    public void setValue(Double value) {
+        this.value = value;
     }
 
 }
