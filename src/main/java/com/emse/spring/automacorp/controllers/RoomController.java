@@ -1,5 +1,6 @@
 package com.emse.spring.automacorp.controllers;
 
+import com.emse.spring.automacorp.services.RoomService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
