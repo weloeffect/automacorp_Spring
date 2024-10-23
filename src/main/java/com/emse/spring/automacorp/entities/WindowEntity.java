@@ -5,30 +5,24 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "SP_WINDOW")
 public class WindowEntity {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length=255)
+    @Column(nullable = false)
     private String name;
 
-    @OneToOne(optional = false)
-    private SensorEntity windowStatus;
+    @Enumerated(EnumType.STRING)
+    private WindowStatus windowStatus;
 
     @ManyToOne
+    @JoinColumn(name = "room_id")
     private RoomEntity room;
 
-    public WindowEntity() {
-    }
-
-    public WindowEntity(String name, SensorEntity windowStatus, RoomEntity room) {
-        this.windowStatus = windowStatus;
-        this.name = name;
-        this.room = room;
-    }
-
+    // Getters and Setters
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -43,11 +37,11 @@ public class WindowEntity {
         this.name = name;
     }
 
-    public SensorEntity getWindowStatus() {
+    public WindowStatus getWindowStatus() {
         return windowStatus;
     }
 
-    public void setWindowStatus(SensorEntity windowStatus) {
+    public void setWindowStatus(WindowStatus windowStatus) {
         this.windowStatus = windowStatus;
     }
 

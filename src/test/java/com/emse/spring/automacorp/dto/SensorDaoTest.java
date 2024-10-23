@@ -1,4 +1,4 @@
-package com.emse.spring.automacorp.dao;
+package com.emse.spring.automacorp.dto;
 
 import com.emse.spring.automacorp.entities.SensorEntity;
 import org.assertj.core.api.Assertions;
@@ -14,7 +14,7 @@ public class SensorDaoTest {
 
     @Test
     public void shouldFindASensorByID(){
-        SensorEntity sensor = sensorDao.getReferenceById(-7L);
+        SensorEntity sensor = sensorDao.getRBldBerenceById(-7L);
         Assertions.assertThat(sensor.getName()).isEqualTo("Window 1 status room 2");
     }
 }

@@ -1,46 +1,34 @@
 package com.emse.spring.automacorp.entities;
 
-import com.emse.spring.automacorp.model.SensorType;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "SP_SENSOR")
 public class SensorEntity {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable=false, length=255)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "sensor_value")
+    @Column(name = "sensor_value", nullable = false)
     private Double value;
 
-    @Column(name = "sensor_type")
-    @Enumerated(EnumType.STRING)
-    private SensorType sensorType;
+    @Column(name = "sensor_type", nullable = false)
+    private String sensorType;
 
-    @OneToOne(mappedBy = "currentTemp")
-    private RoomEntity room;
-
-    @OneToOne(mappedBy = "outsideTemperature")
-    private BuildingEntity building;
-
-    @OneToOne(mappedBy = "status")
-    private HeaterEntity heater;
-
-    @OneToOne(mappedBy = "windowStatus")
-    private WindowEntity window;
-
-    public SensorEntity() {
+    public SensorType getSensorType() {
+        return SensorType.valueOf(sensorType);
     }
 
-    public SensorEntity(SensorType sensorType, String name) {
-        this.name = name;
-        this.sensorType = sensorType;
+    public void setSensorType(SensorType sensorType) {
+        this.sensorType = sensorType.name();
     }
 
-    public Long getId() { // (10).
+    public Long getId() {
         return id;
     }
 
@@ -62,45 +50,5 @@ public class SensorEntity {
 
     public void setValue(Double value) {
         this.value = value;
-    }
-
-    public SensorType getSensorType() {
-        return sensorType;
-    }
-
-    public void setSensorType(SensorType sensorType) {
-        this.sensorType = sensorType;
-    }
-
-    public RoomEntity getRoom() {
-        return room;
-    }
-
-    public void setRoom(RoomEntity room) {
-        this.room = room;
-    }
-
-    public BuildingEntity getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(BuildingEntity building) {
-        this.building = building;
-    }
-
-    public HeaterEntity getHeater() {
-        return heater;
-    }
-
-    public void setHeater(HeaterEntity heater) {
-        this.heater = heater;
-    }
-
-    public WindowEntity getWindow() {
-        return window;
-    }
-
-    public void setWindow(WindowEntity window) {
-        this.window = window;
     }
 }

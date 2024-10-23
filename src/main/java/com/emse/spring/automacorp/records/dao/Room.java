@@ -1,4 +1,4 @@
-package com.example.application.dto;
+package com.emse.spring.automacorp.records.dao;
 
 import java.util.List;
 

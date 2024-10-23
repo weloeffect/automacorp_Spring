@@ -1,8 +1,9 @@
 package com.emse.spring.automacorp.mappers;
 
+
 import com.emse.spring.automacorp.entities.WindowEntity;
 import com.emse.spring.automacorp.entities.WindowStatus;
-import com.emse.spring.automacorp.model.records.dto.dao.Window;
+import com.emse.spring.automacorp.records.dao.Window;
 
 public class WindowMapper {
     public static Window of(WindowEntity window) {

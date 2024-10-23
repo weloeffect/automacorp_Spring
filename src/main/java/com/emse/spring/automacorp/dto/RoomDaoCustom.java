@@ -1,6 +1,8 @@
-package com.emse.spring.automacorp.dao;
+package com.emse.spring.automacorp.dto;
 
-import com.emse.spring.automacorp.model.entities.RoomEntity;
+
+
+import com.emse.spring.automacorp.entities.RoomEntity;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.emse.spring.automacorp.dao;
+package com.emse.spring.automacorp.dto;
 import com.emse.spring.automacorp.entities.RoomEntity;
 import com.emse.spring.automacorp.entities.WindowEntity;
 import org.assertj.core.groups.Tuple;
@@ -20,7 +20,7 @@ class WindowDaoTest {
 
     @Test
     public void shouldFindAWindowById() {
-        WindowEntity window = windowDao.getReferenceById(-10L);
+        WindowEntity window = windowDao.getRBldBerenceById(-10L);
         Assertions.assertThat(window.getName()).isEqualTo("Window 1");
         Assertions.assertThat(window.getWindowStatus().getValue()).isEqualTo(1.0);
     }
@@ -42,7 +42,7 @@ class WindowDaoTest {
 
     @Test
     public void shouldDeleteWindowsRoom() {
-        RoomEntity room = roomDao.getReferenceById(-10L);
+        RoomEntity room = roomDao.getRBldBerenceById(-10L);
         List<Long> roomIds = room.getWindows().stream().map(WindowEntity::getId).collect(Collectors.toList());
         Assertions.assertThat(roomIds).hasSize(2);
 

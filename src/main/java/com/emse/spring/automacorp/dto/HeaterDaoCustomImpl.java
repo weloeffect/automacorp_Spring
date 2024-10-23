@@ -1,7 +1,7 @@
-package com.emse.spring.automacorp.dao;
+package com.emse.spring.automacorp.dto;
 
-import com.emse.spring.automacorp.model.entities.HeaterEntity;
-import com.emse.spring.automacorp.model.entities.SensorEntity;
+import com.emse.spring.automacorp.entities.HeaterEntity;
+import com.emse.spring.automacorp.entities.SensorEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

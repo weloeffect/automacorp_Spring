@@ -1,68 +1,41 @@
 package com.emse.spring.automacorp.controllers;
 
-import com.emse.spring.automacorp.model.dao.SensorDao1;
-import com.emse.spring.automacorp.model.entities.SensorEntity;
-import com.emse.spring.automacorp.model.mappers.SensorMapper;
-import com.emse.spring.automacorp.model.records.dao.Sensor;
-import com.emse.spring.automacorp.model.records.dto.SensorCommand;
-import jakarta.transaction.Transactional;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api/sensors")
-@Transactional
 public class SensorController {
-    private final SensorDao1 sensorDao;
 
-    public SensorController(SensorDao1 sensorDao) {
-        this.sensorDao = sensorDao;
+    private final SensorService sensorService;
+
+    public SensorController(SensorService sensorService) {
+        this.sensorService = sensorService;
     }
 
     @GetMapping
-    public List<Sensor> findAll() {
-        return sensorDao.findAll()
-                .stream()
-                .map(SensorMapper::of)
-                .sorted(Comparator.comparing(Sensor::name))
-                .collect(Collectors.toList());
+    public List<SensorDto> findAll() {
+        return sensorService.findAll();
     }
 
-    @GetMapping(path = "/{id}")
-    public Sensor findById(@PathVariable Long id) {
-        return sensorDao.findById(id).map(SensorMapper::of).orElse(null);
+    @GetMapping("/{id}")
+    public SensorDto findById(@PathVariable Long id) {
+        return sensorService.findById(id).orElse(null);
     }
 
     @PostMapping
-    public ResponseEntity<Sensor> create(@RequestBody SensorCommand sensor) {
-        SensorEntity entity = new SensorEntity(sensor.sensorType(), sensor.name());
-        entity.setValue(sensor.value());
-        SensorEntity saved = sensorDao.save(entity);
-        return ResponseEntity.ok(SensorMapper.of(saved));
+    public SensorDto create(@RequestBody SensorDto sensorDto) {
+        return sensorService.create(sensorDto);
     }
 
-    @PutMapping(path = "/{id}")
-    public ResponseEntity<Sensor> update(@PathVariable Long id, @RequestBody SensorCommand sensor) {
-        SensorEntity entity = sensorDao.findById(id).orElse(null);
-        if (entity == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        entity.setValue(sensor.value());
-        entity.setName(sensor.name());
-        entity.setSensorType(sensor.sensorType());
-
-        sensorDao.save(entity);
-
-        return ResponseEntity.ok(SensorMapper.of(entity));
+    @PutMapping("/{id}")
+    public SensorDto update(@PathVariable Long id, @RequestBody SensorDto sensorDto) {
+        return sensorService.update(id, sensorDto);
     }
 
-    @DeleteMapping(path = "/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        sensorDao.deleteById(id);
+        sensorService.deleteById(id);
     }
 }

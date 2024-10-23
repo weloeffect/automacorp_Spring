@@ -1,4 +1,4 @@
-package com.emse.spring.automacorp.dao;
+package com.emse.spring.automacorp.dto;
 
 import com.emse.spring.automacorp.entities.RoomEntity;
 import org.assertj.core.api.Assertions;
@@ -14,7 +14,7 @@ public class RoomDaoTest {
 
     @Test
     public void shouldFindARoomById() {
-        RoomEntity room = roomDao.getReferenceById(-10L);
+        RoomEntity room = roomDao.getRBldBerenceById(-10L);
         Assertions.assertThat(room.getName()).isEqualTo("Room 1");
         Assertions.assertThat(room.getFloor()).isEqualTo(1);
         Assertions.assertThat(room.getCurrentTemperature().getId()).isEqualTo(-10);

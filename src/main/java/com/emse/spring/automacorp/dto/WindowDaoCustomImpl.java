@@ -1,7 +1,8 @@
-package com.emse.spring.automacorp.dao;
+package com.emse.spring.automacorp.dto;
 
-import com.emse.spring.automacorp.model.entities.SensorEntity;
-import com.emse.spring.automacorp.model.entities.WindowEntity;
+
+import com.emse.spring.automacorp.entities.SensorEntity;
+import com.emse.spring.automacorp.entities.WindowEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
