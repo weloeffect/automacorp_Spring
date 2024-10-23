@@ -1,16 +1,23 @@
 package com.emse.spring.automacorp.mappers;
 
 
-import com.emse.spring.automacorp.entities.SensorEntity;
-import com.emse.spring.automacorp.records.dao.Sensor;
-
 public class SensorMapper {
-    public static Sensor of(SensorEntity sensor) {
-        return new Sensor(
-                sensor.getId(),
-                sensor.getName(),
-                sensor.getValue(),
-                sensor.getSensorType()
+
+    public static SensorDto of(SensorEntity entity) {
+        return new SensorDto(
+                entity.getId(),
+                entity.getName(),
+                entity.getValue(),
+                entity.getSensorType()
         );
+    }
+
+    public static SensorEntity toEntity(SensorDto dto) {
+        SensorEntity entity = new SensorEntity();
+        entity.setId(dto.id());
+        entity.setName(dto.name());
+        entity.setValue(dto.value());
+        entity.setSensorType(dto.sensorType());
+        return entity;
     }
 }
