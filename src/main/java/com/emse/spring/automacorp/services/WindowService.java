@@ -1,5 +1,16 @@
 package com.emse.spring.automacorp.services;
 
+import com.emse.spring.automacorp.dto.Window;
+import com.emse.spring.automacorp.entities.RoomEntity;
+import com.emse.spring.automacorp.entities.WindowEntity;
+import com.emse.spring.automacorp.mappers.WindowMapper;
+import com.emse.spring.automacorp.repositories.WindowRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class WindowService {
 

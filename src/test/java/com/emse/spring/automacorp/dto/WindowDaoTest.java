@@ -26,8 +26,8 @@ class WindowDaoTest {
     }
 
     @Test
-    public void shouldFindRoomsWithOpenWindows() {
-        List<WindowEntity> result = windowDao.findRoomsWithOpenWindows(-10L);
+    public void shouldFindSP_ROOMWithOpenWindows() {
+        List<WindowEntity> result = windowDao.findSP_ROOMWithOpenWindows(-10L);
         Assertions.assertThat(result)
                 .hasSize(1)
                 .extracting("id", "name")
@@ -35,8 +35,8 @@ class WindowDaoTest {
     }
 
     @Test
-    public void shouldNotFindRoomsWithOpenWindows() {
-        List<WindowEntity> result = windowDao.findRoomsWithOpenWindows(-9L);
+    public void shouldNotFindSP_ROOMWithOpenWindows() {
+        List<WindowEntity> result = windowDao.findSP_ROOMWithOpenWindows(-9L);
         Assertions.assertThat(result).isEmpty();
     }
 

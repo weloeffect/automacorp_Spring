@@ -1,5 +1,8 @@
 package com.emse.spring.automacorp.controllers;
 
+import com.emse.spring.automacorp.dto.Sensor;
+
+import com.emse.spring.automacorp.services.SensorService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,22 +18,22 @@ public class SensorController {
     }
 
     @GetMapping
-    public List<SensorDto> findAll() {
+    public List<Sensor> findAll() {
         return sensorService.findAll();
     }
 
     @GetMapping("/{id}")
-    public SensorDto findById(@PathVariable Long id) {
+    public Sensor findById(@PathVariable Long id) {
         return sensorService.findById(id).orElse(null);
     }
 
     @PostMapping
-    public SensorDto create(@RequestBody SensorDto sensorDto) {
+    public Sensor create(@RequestBody Sensor sensorDto) {
         return sensorService.create(sensorDto);
     }
 
     @PutMapping("/{id}")
-    public SensorDto update(@PathVariable Long id, @RequestBody SensorDto sensorDto) {
+    public Sensor update(@PathVariable Long id, @RequestBody Sensor sensorDto) {
         return sensorService.update(id, sensorDto);
     }
 

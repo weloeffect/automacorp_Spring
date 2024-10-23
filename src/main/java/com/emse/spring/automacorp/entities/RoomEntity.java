@@ -3,6 +3,7 @@ package com.emse.spring.automacorp.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "SP_ROOM")

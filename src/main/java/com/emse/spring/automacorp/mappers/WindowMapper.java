@@ -1,6 +1,10 @@
 package com.emse.spring.automacorp.mappers;
 
 
+import com.emse.spring.automacorp.dto.Window;
+import com.emse.spring.automacorp.entities.RoomEntity;
+import com.emse.spring.automacorp.entities.WindowEntity;
+
 ;
 
 public class WindowMapper {

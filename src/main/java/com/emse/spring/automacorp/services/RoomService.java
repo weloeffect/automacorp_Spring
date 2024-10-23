@@ -1,5 +1,12 @@
 package com.emse.spring.automacorp.services;
 
+import com.emse.spring.automacorp.entities.RoomEntity;
+import com.emse.spring.automacorp.repositories.RoomRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class RoomService {
 

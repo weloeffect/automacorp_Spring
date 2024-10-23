@@ -1,5 +1,15 @@
 package com.emse.spring.automacorp.services;
 
+import com.emse.spring.automacorp.dto.Sensor;
+import com.emse.spring.automacorp.entities.SensorEntity;
+import com.emse.spring.automacorp.mappers.SensorMapper;
+import com.emse.spring.automacorp.repositories.SensorRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 public class SensorService {
 
@@ -10,27 +20,27 @@ public class SensorService {
     }
 
     // Fetch all sensors and convert them to DTOs
-    public List<SensorDto> findAll() {
+    public List<Sensor> findAll() {
         return sensorRepository.findAll().stream()
                 .map(SensorMapper::of)
                 .collect(Collectors.toList());
     }
 
     // Fetch a sensor by ID and convert to DTO
-    public Optional<SensorDto> findById(Long id) {
+    public Optional<Sensor> findById(Long id) {
         return sensorRepository.findById(id)
                 .map(SensorMapper::of);
     }
 
     // Create a new sensor from DTO
-    public SensorDto create(SensorDto dto) {
+    public Sensor create(Sensor dto) {
         SensorEntity sensorEntity = SensorMapper.toEntity(dto);
         SensorEntity savedEntity = sensorRepository.save(sensorEntity);
         return SensorMapper.of(savedEntity);
     }
 
     // Update an existing sensor
-    public SensorDto update(Long id, SensorDto dto) {
+    public Sensor update(Long id, Sensor dto) {
         Optional<SensorEntity> existingSensorOpt = sensorRepository.findById(id);
 
         if (existingSensorOpt.isPresent()) {

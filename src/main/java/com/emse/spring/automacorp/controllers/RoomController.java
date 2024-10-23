@@ -1,5 +1,9 @@
 package com.emse.spring.automacorp.controllers;
 
+import com.emse.spring.automacorp.dto.Room;
+import com.emse.spring.automacorp.entities.RoomEntity;
+import com.emse.spring.automacorp.mappers.RoomMapper;
+
 import com.emse.spring.automacorp.services.RoomService;
 import org.springframework.web.bind.annotation.*;
 

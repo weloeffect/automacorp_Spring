@@ -1,6 +1,8 @@
 package com.emse.spring.automacorp.controllers;
 
 
+import com.emse.spring.automacorp.dto.Window;
+import com.emse.spring.automacorp.services.WindowService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
