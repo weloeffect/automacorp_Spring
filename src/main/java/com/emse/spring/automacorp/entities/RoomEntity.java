@@ -2,6 +2,7 @@ package com.emse.spring.automacorp.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ public class RoomEntity {
     private String name;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL)
-    private Set<WindowEntity> windows;
+    private Set<WindowEntity> windows = new HashSet<>();
 
     public Long getId() {
         return id;

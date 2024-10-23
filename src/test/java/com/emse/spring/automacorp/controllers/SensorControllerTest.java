@@ -46,8 +46,8 @@ class SensorControllerTest {
 
     @Test
     void shouldFindSensorById() throws Exception {
-        Sensor sensorDto = new Sensor(1L, "Temperature Sensor", 25.0, SensorType.TEMPERATURE);
-        Mockito.when(sensorService.findById(1L)).thenReturn(java.util.Optional.of(sensorDto));
+        Sensor sensor = new Sensor(1L, "Temperature Sensor", 25.0, SensorType.TEMPERATURE);
+        Mockito.when(sensorService.findById(1L)).thenReturn(java.util.Optional.of(sensor));
 
         mockMvc.perform(get("/api/sensors/1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -56,14 +56,14 @@ class SensorControllerTest {
 
     @Test
     void shouldCreateSensor() throws Exception {
-        Sensor sensorDto = new Sensor(null, "Temperature Sensor", 25.0, SensorType.TEMPERATURE);
+        Sensor sensor = new Sensor(null, "Temperature Sensor", 25.0, SensorType.TEMPERATURE);
         Sensor savedSensor = new Sensor(1L, "Temperature Sensor", 25.0, SensorType.TEMPERATURE);
 
         Mockito.when(sensorService.create(Mockito.any(Sensor.class))).thenReturn(savedSensor);
 
         mockMvc.perform(post("/api/sensors")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(sensorDto)))
+                        .content(objectMapper.writeValueAsString(sensor)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.name").value("Temperature Sensor"));

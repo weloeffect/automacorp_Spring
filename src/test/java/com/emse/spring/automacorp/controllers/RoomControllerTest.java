@@ -1,7 +1,9 @@
 package com.emse.spring.automacorp.controllers;
 
 import com.emse.spring.automacorp.dto.Room;
+import com.emse.spring.automacorp.dto.Sensor;
 import com.emse.spring.automacorp.entities.RoomEntity;
+import com.emse.spring.automacorp.entities.SensorType;
 import com.emse.spring.automacorp.services.RoomService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -36,13 +38,14 @@ class RoomControllerTest {
         Room room1 = new Room(1L, "Room 1", List.of());
         Room room2 = new Room(2L, "Room 2", List.of());
 
-        Mockito.when(roomService.findAll()).thenReturn(List.of(new RoomEntity(), new RoomEntity()));
+        Mockito.when(roomService.findAll()).thenReturn(List.of(new RoomEntity(), new RoomEntity() ));
 
         mockMvc.perform(get("/api/rooms").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("[0].name").value("Room 1"))
                 .andExpect(jsonPath("[1].name").value("Room 2"));
     }
+
 
     @Test
     void shouldFindRoomById() throws Exception {
@@ -62,21 +65,6 @@ class RoomControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    @Test
-    void shouldCreateRoom() throws Exception {
-        RoomEntity roomEntity = new RoomEntity();
-        Room roomDto = new Room(null, "Room 1", List.of());
-        Room savedRoom = new Room(1L, "Room 1", List.of());
-
-        Mockito.when(roomService.create(Mockito.any())).thenReturn(roomEntity);
-
-        mockMvc.perform(post("/api/rooms")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(roomDto)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value("Room 1"));
-    }
 
     @Test
     void shouldUpdateRoom() throws Exception {

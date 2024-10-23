@@ -44,14 +44,14 @@ class WindowControllerTest {
 
     @Test
     void shouldCreateWindow() throws Exception {
-        Window windowDto = new Window(null, "Window 1", WindowStatus.OPENED, 1L);
+        Window window = new Window(null, "Window 1", WindowStatus.OPENED, 1L);
         Window savedWindow = new Window(1L, "Window 1", WindowStatus.OPENED, 1L);
 
         Mockito.when(windowService.create(Mockito.any(Window.class))).thenReturn(savedWindow);
 
         mockMvc.perform(post("/api/windows")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(windowDto)))
+                        .content(objectMapper.writeValueAsString(window)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L))
                 .andExpect(jsonPath("$.name").value("Window 1"));
